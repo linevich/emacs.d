@@ -1,0 +1,8 @@
+syntax: regex
+^elpa/
+^var/
+custom.el
+.*~$
+^bookmarks
+^recentf
+^session.*
