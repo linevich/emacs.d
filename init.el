@@ -48,6 +48,7 @@
 			      less-css-mode
 			      php-mode
 			      jinja2-mode
+			      autopair
 			      ))
 
 (install-required-packages required-package-list)
@@ -98,6 +99,8 @@
 ;; Parentheses highlight mode
 (rainbow-delimiters-mode t)
 (rainbow-mode t)
+;; Auto close parentheses
+(autopair-mode t)
 
 ;; Flychek - checking syntax
 (global-flycheck-mode)
