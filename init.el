@@ -6,6 +6,7 @@
 (require 'package)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file 'no-error 'no-message)
+(add-to-list 'load-path "~/.emacs.d/lisp/yasnippet")
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
