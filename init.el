@@ -45,9 +45,7 @@
 
 
 ;; Setting color theme
-(use-package spacemacs-theme
-  :ensure t
-  :init (load-theme 'spacemacs-dark t))
+(use-package spacemacs-theme :ensure t :init (load-theme 'spacemacs-dark t))
 
 (use-package spaceline
   :ensure t
@@ -65,22 +63,13 @@
 	  (setq fci-rule-column 100)
 	  (setq fci-rule-width 1)
 	  (setq fci-rule-character-color "#3D3D3D")
-	  (add-hook 'markdown-mode-hook 'fci-mode)))
+	  (add-hook 'markdown-mode-hook 'fci-mode)
+	  (add-hook 'emacs-lisp-mode-hook 'fci-mode)))
 
 
 ;;; Auto completion tools.
-
-;; Helm M-x, switch buffer and other operations completion tool.
-(use-package helm
-  :ensure t
-  :init (helm-mode 1)
-  )
-
-
-;; Company mode - in-file completion engine.
-(use-package company
-  :ensure t
-  :init (global-company-mode t))
+(use-package helm :ensure t :init (helm-mode 1)) ;; Helm M-x, switch buffer and other operations completion tool.
+(use-package company :ensure t :init (global-company-mode t)) ;; Company mode - in-file completion engine.
 
 ;; Snippets
 
@@ -94,27 +83,17 @@
 	'("~/.emacs.d/snippets"
 	  "~/.emacs.d/lisp/yasnippet/snippets")))
 
-;; Parentheses highlight mode
 
-(use-package rainbow-delimiters
-  :ensure t
-  :init (rainbow-delimiters-mode t))
-
-(use-package rainbow-mode
-  :ensure t
-  :init (rainbow-mode t))
-
-;; Auto close parentheses
-(use-package autopair
-  :ensure t
-  :config (autopair-mode t))
-
-;; Flychek - checking syntax
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode)
-  )
+(use-package rainbow-delimiters :ensure t :init (rainbow-delimiters-mode t)) ;; Parentheses highlight mode
+(use-package autopair :ensure t :config (autopair-mode t))    ;; Auto close parentheses
+(use-package flycheck :ensure t :init (global-flycheck-mode)) ;; Flychek - checking syntax
+(use-package hgignore-mode :ensure t)
+(use-package gitignore-mode :ensure t)
+(use-package ace-jump-mode :ensure t)
+(use-package less-css-mode :ensure t)
+(use-package php-mode :ensure t)
+(use-package jinja2-mode :ensure t)
+(use-package autopair :ensure t)
 
 ;;; HTML & CSS/LESS settings
 
@@ -140,14 +119,6 @@
 	    (global-set-key (kbd "s-.") 'mc/mark-next-like-this)
 	    (global-set-key (kbd "s-,") 'mc/mark-previous-like-this)))
 
-
-(use-package hgignore-mode :ensure t)
-(use-package gitignore-mode :ensure t)
-(use-package ace-jump-mode :ensure t)
-(use-package less-css-mode :ensure t)
-(use-package php-mode :ensure t)
-(use-package jinja2-mode :ensure t)
-(use-package autopair :ensure t)
 
 ;; "Yes or no" to "y or n"
 (fset 'yes-or-no-p 'y-or-n-p)
