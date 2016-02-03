@@ -54,6 +54,7 @@
 
 (setq ergoemacs-theme nil)
 (setq ergoemacs-keyboard-layout "us")
+(setq ergoemacs-message-level nil) ;; Disabling all debug messages.
 (ergoemacs-mode 1)
 
 ;;; General appearance settings.
