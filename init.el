@@ -13,6 +13,7 @@
                          ("melpa" . "https://melpa.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")))
 
+;; Package pipnning
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
 	'((ergoemacs-mode . "gnu"))))
@@ -28,7 +29,8 @@
           package-list)))
 
 ;; Reuired pakcages
-(setq required-package-list '(ergoemacs-mode
+(setq required-package-list '(yasnippet
+			      ergoemacs-mode
 			      sublime-themes
 			      helm-mode
 			      company
@@ -44,6 +46,8 @@
 			      emmet-mode
 			      ace-jump-mode
 			      less-css-mode
+			      php-mode
+			      jinja2-mode
 			      ))
 
 (install-required-packages required-package-list)
@@ -84,13 +88,19 @@
 ;; Company mode - in-file completion engine.
 (global-company-mode t)
 
+;; Snippets
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+        "~/.emacs.d/lisp/yasnippet/snippets"
+	))
+(yas-global-mode t)
+
 ;; Parentheses highlight mode
 (rainbow-delimiters-mode t)
 (rainbow-mode t)
 
 ;; Flychek - checking syntax
 (global-flycheck-mode)
-
 
 ;;; HTML & CSS/LESS settings
 
@@ -104,6 +114,7 @@
 
 (global-set-key (kbd "s-.") 'mc/mark-next-like-this)
 (global-set-key (kbd "s-,") 'mc/mark-previous-like-this)
+
 
 (provide 'init)
 ;;; init.el ends here
