@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	helm-M-x
 	mc/mark-next-lines
 	))
 
