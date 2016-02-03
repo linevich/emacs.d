@@ -3,6 +3,10 @@ syntax: regexp
 ^var/
 custom.el
 .*~$
+^\#
+^\.\#
 ^bookmarks
 ^recentf
 ^session.*
+lisp/
+tramp
