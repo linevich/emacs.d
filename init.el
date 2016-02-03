@@ -71,7 +71,6 @@
 (spaceline-emacs-theme)
 (spaceline-helm-mode)
 (spaceline-toggle-column-on)
-(rainbow-delimiters-mode t)
 
 (setq-default fill-column 100)
 (setq fci-rule-color "#3D3D3D")
