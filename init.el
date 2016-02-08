@@ -140,6 +140,21 @@
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
+(defun insert-hash ()
+  (interactive)
+  (insert "#"))
+
+(defun linevich/markdown-settings ()
+  (interactive)
+  (local-set-key (kbd "№") 'insert-hash)
+  (local-set-key (kbd "C p") 'markdown-preview)
+  )
+
+
+(setq markdown-css-paths (list
+			  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"))
+(add-hook 'markdown-mode-hook 'linevich/markdown-settings)
+
 
 (provide 'init)
 ;;; init.el ends here
