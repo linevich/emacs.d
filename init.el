@@ -126,9 +126,8 @@
 
 (use-package multiple-cursors
   :ensure t
-  :config (progn 
-	    (global-set-key (kbd "s-.") 'mc/mark-next-like-this)
-	    (global-set-key (kbd "s-,") 'mc/mark-previous-like-this)))
+  :bind (("s-." . mc/mark-next-like-this)
+	 ("s-," . mc/mark-previous-like-this)))
 
 
 ;; "Yes or no" to "y or n"
