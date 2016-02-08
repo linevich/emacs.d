@@ -10,3 +10,4 @@ custom.el
 ^session.*
 lisp/
 tramp
+^auto-save-list/
