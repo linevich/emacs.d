@@ -68,7 +68,18 @@
 
 
 ;;; Auto completion tools.
-(use-package helm :ensure t :init (helm-mode 1)) ;; Helm M-x, switch buffer and other operations completion tool.
+(use-package helm
+  :ensure t
+  :init (progn
+	  (require 'helm-config)
+	  (setq helm-candidate-number-limit 100)
+	  (setq helm-idle-delay 0.0 
+		helm-input-idle-delay 0.01
+		helm-yas-display-key-on-candidate t
+		helm-quick-update t
+		helm-M-x-requires-pattern nil
+		helm-ff-skip-boring-files t)
+	  (helm-mode 1))) ;; Helm M-x, switch buffer and other operations completion tool.
 (use-package company :ensure t :init (global-company-mode t)) ;; Company mode - in-file completion engine.
 
 ;; Snippets
