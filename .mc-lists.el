@@ -3,8 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	downcase-region
+	ergoemacs-ctl-c
+	ergoemacs-paste
+	eval-last-sexp
 	helm-M-x
 	mc/mark-next-lines
+	org-self-insert-command
 	))
 
 (setq mc/cmds-to-run-once
