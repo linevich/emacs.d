@@ -154,7 +154,7 @@
 (setq markdown-css-paths (list
 			  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"))
 (add-hook 'markdown-mode-hook 'linevich/markdown-settings)
-
+(add-hook 'markdown-mode-hook 'flyspell-mode-on)
 
 (provide 'init)
 ;;; init.el ends here
