@@ -42,6 +42,13 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
+(add-to-list 'default-frame-alist '(font . "Roboto Mono-12" ))
+(set-face-attribute 'default t :font "Roboto Mono-12" )
+(set-frame-font "Roboto Mono-12" nil t)
+
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
 
 
 ;; Setting color theme
