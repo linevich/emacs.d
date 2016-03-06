@@ -112,6 +112,7 @@
 (use-package php-mode :ensure t)
 (use-package jinja2-mode :ensure t)
 (use-package autopair :ensure t)
+(use-package sr-speedbar :ensure t :bind (("C-f". sr-speedbar-open))) ;; Speedbar
 
 ;;; HTML & CSS/LESS settings
 
