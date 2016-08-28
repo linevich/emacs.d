@@ -1,2 +1,0 @@
-lisp/yasnippet = [git]https://github.com/capitaomorte/yasnippet.git
-snippets = ssh://hg@bitbucket.org/linevich/snippets
