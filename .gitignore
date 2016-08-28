@@ -1,0 +1,13 @@
+^elpa/
+^var/
+custom.el
+.*~$
+^\#
+^\.\#
+^bookmarks
+^recentf
+^session.*
+lisp/
+tramp
+^auto-save-list/
+^url/
