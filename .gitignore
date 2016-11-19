@@ -12,3 +12,7 @@ tramp
 auto-save-list/
 url/
 backups/
+*.dat
+^\.python-environments/
+^\%backup\%~
+
