@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: iss
+# key: iss
+# --
+
+* TODO #${1:0000} ${2:Task name}
+  *Estimated time* $3
+  *Link* $4
