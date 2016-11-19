@@ -3,9 +3,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;; Package settings
 (require 'package)
+
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file 'no-error 'no-message)
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -16,7 +16,6 @@
 			 ("org" . "http://orgmode.org/elpa/")))
 
 (package-initialize)
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
@@ -35,16 +34,23 @@
 	    (setq ergoemacs-theme nil)
 	    (setq ergoemacs-keyboard-layout "us")
 	    (setq ergoemacs-message-level nil) ;; Disabling all debug messages.
-	    (ergoemacs-mode 1)))
+	    (ergoemacs-mode 1))
+  (global-set-key (kbd "M-l") 'forward-char))
 
 ;;; General appearance settings.
 ;; Disable menubar, toolbar and scrollbar.
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
-(add-to-list 'default-frame-alist '(font . "Roboto Mono-12" ))
-(set-face-attribute 'default t :font "Roboto Mono-12" )
-(set-frame-font "Roboto Mono-12" nil t)
+
+
+;;; Using different font settings methods when launching as GUI or as a daemon
+(if window-system
+    (progn
+      (add-to-list 'default-frame-alist '(font . "Roboto Mono-9" ))
+      (set-face-attribute 'default t :font "Roboto Mono-9" )
+      (set-frame-font "Roboto Mono-9" nil t))
+  (setq default-frame-alist '((font . "Roboto Mono-9"))))
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -87,14 +93,19 @@
 		helm-M-x-requires-pattern nil
 		helm-ff-skip-boring-files t)
 	  (helm-mode 1))) ;; Helm M-x, switch buffer and other operations completion tool.
-(use-package company :ensure t :init (global-company-mode t)) ;; Company mode - in-file completion engine.
+
+
+;; Company mode - in-file completion engine.
+(use-package company 
+  :ensure t 
+  :init (global-company-mode t))
+
 
 ;; Snippets
-
 (use-package yasnippet
   :init
   (progn 
-    (load-file "~/.emacs.d/lisp/yasnippet/yasnippet.el")
+    ;;(load-file "~/.emacs.d/lisp/yasnippet/yasnippet.el")
     (yas-global-mode))
   :config
   (setq yas-snippet-dirs
@@ -102,7 +113,16 @@
 	  "~/.emacs.d/lisp/yasnippet/snippets")))
 
 
-(use-package rainbow-delimiters :ensure t :init (rainbow-delimiters-mode t)) ;; Parentheses highlight mode
+;; Parentheses highlight mode
+(use-package rainbow-delimiters
+  :ensure t
+  :init (rainbow-delimiters-mode t)
+  :config (progn
+	    (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+	    (add-hook 'latex-mode-hook 'rainbow-delimiters-mode)
+	    (add-hook 'json-mode-hook 'rainbow-delimiters-mode)))
+
+
 (use-package autopair :ensure t :config (autopair-mode t))    ;; Auto close parentheses
 (use-package flycheck :ensure t :init (global-flycheck-mode)) ;; Flychek - checking syntax
 (use-package hgignore-mode :ensure t)
@@ -112,7 +132,18 @@
 (use-package php-mode :ensure t)
 (use-package jinja2-mode :ensure t)
 (use-package autopair :ensure t)
-(use-package sr-speedbar :ensure t :bind (("C-f". sr-speedbar-open))) ;; Speedbar
+(use-package json-mode :ensure t)
+
+
+(use-package langtool
+  :ensure t
+  :init (progn
+	  (setq langtool-language-tool-jar "~/bin/language-tool/languagetool-commandline.jar")
+	  (setq langtool-default-language "en-US")
+	  (setq langtool-mother-tongue "en")))
+
+
+(use-package sr-speedbar :ensure t) ;; Speedbar
 
 ;;; HTML & CSS/LESS settings
 
@@ -135,7 +166,9 @@
 (use-package multiple-cursors
   :ensure t
   :bind (("s-." . mc/mark-next-like-this)
-	 ("s-," . mc/mark-previous-like-this)))
+	 ("s-," . mc/mark-previous-like-this)
+	 ("s-c i n" . mc/insert-numbers)
+	 ("s-c i l" . mc/insert-letters)))
 
 
 ;; "Yes or no" to "y or n"
@@ -164,5 +197,44 @@
 (add-hook 'markdown-mode-hook 'linevich/markdown-settings)
 (add-hook 'markdown-mode-hook 'flyspell-mode-on)
 
+
+(use-package textile-mode
+  :ensure t
+  :init (progn
+	  (add-to-list 'auto-mode-alist '("\\.textile$" . textile-mode))))
+
+(use-package magit
+  :ensure t
+  :init (global-unset-key (kbd "A-m"))
+  :bind (("C-k" . magit-commit)
+	 ("C-m" . magit-status)))
+
+;;; LaTeX settings
+
+(use-package tex-site  :ensure auctex)
+(use-package company-auctex :ensure t)
+
+
+(defun linevich/latex-settings ()
+  (interactive)
+  (auto-fill-mode t)
+  (flyspell-mode t))
+
+(add-hook 'latex-mode-hook 'linevich/latex-settings)
+
+(use-package jedi
+  :ensure t
+  :config (progn
+	    (add-hook 'python-mode-hook 'jedi:setup)
+	    (setq jedi:complete-on-dot t)))
+
+(use-package sudo-edit
+  :ensure t
+  :bind("C-x C-s". sudo-edit))
+
+(use-package org
+  :bind ("s-i l". org-insert-link))
+
 (provide 'init)
+
 ;;; init.el ends here
