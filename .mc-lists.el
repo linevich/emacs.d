@@ -4,16 +4,29 @@
 (setq mc/cmds-to-run-for-all
       '(
 	downcase-region
+	electric-newline-and-maybe-indent
+	ergoemacs-copy-line-or-region
 	ergoemacs-ctl-c
+	ergoemacs-cut-line-or-region
+	ergoemacs-keyboard-quit
 	ergoemacs-paste
 	eval-last-sexp
 	helm-M-x
 	mc/mark-next-lines
 	org-self-insert-command
+	tex-insert-quote
+	tex-terminate-paragraph
+	toggle-input-method
+	yas-expand
 	))
 
 (setq mc/cmds-to-run-once
       '(
 	ergoemacs-shortcut
+	helm-info-at-point
+	magit-commit
+	make-summary-pdf
 	markdown-exdent-or-delete
+	mouse-drag-mode-line
+	overwrite-mode
 	))
