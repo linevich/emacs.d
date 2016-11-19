@@ -207,7 +207,7 @@
   :ensure t
   :init (global-unset-key (kbd "A-m"))
   :bind (("C-k" . magit-commit)
-	 ("C-m" . magit-status)))
+	 ("A-m" . magit-status)))
 
 ;;; LaTeX settings
 
